@@ -1,0 +1,5 @@
+service,bot_limit,top_limit,bot_time,top_time,price
+in_calls,0,inf,00:00:00,23:59:59,2
+out_calls,0,inf,00:00:00,23:59:59,0
+sms,0,10,00:00:00,23:59:59,0
+sms,10,inf,00:00:00,23:59:59,1
