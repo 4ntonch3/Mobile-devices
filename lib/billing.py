@@ -1,4 +1,5 @@
 import json
+import math
 
 class Billing:
     def __init__(self, file_terms, file_billing, phone_number):
@@ -10,7 +11,6 @@ class Billing:
         self.__bill = None
         self.__sms_count = None
         self.__in_minutes = None
-        self.__accuracy = 2
         self.__error = None
 
 
@@ -108,7 +108,7 @@ class Billing:
                 in_calls_bill += self.__calcCalls(js_line, js_terms['in_calls'])
             if js_line['msisdn_dest'] == self.__phone_number:
                 out_calls_bill += self.__calcCalls(js_line, js_terms['out_calls'])
-        self.__bill = round(sms_bill + in_calls_bill + out_calls_bill, self.__accuracy)
+        self.__bill = sms_bill + in_calls_bill + out_calls_bill
 
 
     def __calcSms(self, amount, sms_terms):
@@ -132,9 +132,9 @@ class Billing:
                 if int(term['bot_limit']) <= self.__in_minutes and (self.__in_minutes < int(term['top_limit']) or int(term['top_limit']) == -1):
                     if float(line['call_duration']) > float(term['top_limit']) - self.__in_minutes and int(term['top_limit']) != -1:
                         bill += (int(term['top_limit']) - self.__in_minutes) * int(term['price'])
-                        line['call_duration'] = str(round((float(line['call_duration']) - float(term['top_limit']) + self.__in_minutes), self.__accuracy))
+                        line['call_duration'] = str(round((float(line['call_duration']) - float(term['top_limit']) + self.__in_minutes)))
                         self.__in_minutes = float(term['top_limit'])
                     else:
-                        bill += float(line['call_duration']) * int(term['price'])
+                        bill += math.ceil(float(line['call_duration'])) * int(term['price'])
                         self.__in_minutes += float(line['call_duration'])
         return bill        
