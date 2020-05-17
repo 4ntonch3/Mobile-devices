@@ -17,6 +17,8 @@ Required commands:
 ` sudo apt-get install unoconv `  
 ` pip3 install docxtpl `  
 
+**Has dependencies with data in folders lab1 and lab2.**
+
 # Usage
 To get .pdf receipt based on previous labs use:  
 `python3 lab3.py --calculate --template_path <path_to_docx>`
@@ -36,6 +38,6 @@ Example of usage according to my variant:
 `python3 lab3.py --calculate --template_path template.docx`  
 
 Example of usage with arbitrary values:  
-`python3 main.py --render --phone_bill 30.21 --net_bill 20.01  --template_path template.docx`  
+`python3 lab3.py --render --phone_bill 30.21 --net_bill 20.01  --template_path template.docx`  
 
 ! python3 !

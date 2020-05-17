@@ -8,7 +8,7 @@ from bill_receipt import BillReceipt
 
 
 def calc_phone_bill():
-    terms_file = '../lab1/terms.txt'
+    terms_file = '../lab1/terms.csv'
     cdr_file = '../lab1/data.csv'
     phone_number = '915783624'
     obj_bill = Billing(terms_file, cdr_file, phone_number)
